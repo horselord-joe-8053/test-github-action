@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: deployment.yaml
+kind: deployment
 metadata:
   name: github-action-gke
 spec:
