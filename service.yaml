@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: github-action-gke
+spec:
+  selector:
+    app: github-action-gke
+  type: LoadBalancer
+  ports:
+    - port: 80 
+      # port of LoadBalancer service
+      targetPort: 8089  
+      # the port of each pod application that LB will forward to, 
+      # therefore this need to match with the port the application normally runs on

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: deployment.yaml
+metadata:
+  name: github-action-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: github-action-gke
+  template:
+    metadata:
+      labels:
+        app: github-action-gke
+    spec:
+      containers:
+        - name: app
+          image: gcr.io/PROJECT_ID/IMAGE:TAG 
+            # corresponding to field in pipeline.yaml to be 
+            # set by kustomize to the latest gcr.io/$PROJECT_ID/$IMAGE:$TAG
+            # whenever we build and deploy again
+          imagePullPolicy: Always
