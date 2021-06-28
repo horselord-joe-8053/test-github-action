@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  PROJECT_ID: ${{secrets.GKE_PROJECT}} # not modify
+  PROJECT_ID: ${{secrets.GKE_PROJECT}} # not modify NOTE: need project_id from Google Cloud, not project_name
   GKE_CLUSTER: github-action-gke
   GKE_ZONE: us-central1-c
   DEPLOYMENT_NAME: github-action-gke # need to be the same in deployment.yaml
