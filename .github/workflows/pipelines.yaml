@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}} # not modify
   GKE_CLUSTER: github-action-gke
-  GKE_ZONNE: us-central1-c
+  GKE_ZONE: us-central1-c
   DEPLOYMENT_NAME: github-action-gke # need to be the same in deployment.yaml
   IMAGE: github-action-gke-image
   TAG: 1.0.0
