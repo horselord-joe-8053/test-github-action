@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: gcr.io/PROJECT_ID/IMAGE:TAG 
+          image: gcr.io/PROJECT_ID/IMAGE:TAG
             # corresponding to field in pipeline.yaml to be 
             # set by kustomize to the latest gcr.io/$PROJECT_ID/$IMAGE:$TAG
             # whenever we build and deploy again
