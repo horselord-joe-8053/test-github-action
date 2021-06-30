@@ -77,14 +77,19 @@ jobs:
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           chmod a+x ./kustomize
 
-      # 'gcr.io/PROJECT_ID/IMAGE:Tag=gcr.io/$PROJECT_ID/$IMAGE:$TAG'
+      # 'gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$TAG'
       # below is corresponding to spec - template - spec - image field
-      # in deployment.yaml. in this way, it will be
-      # set by kustomize to the latest represented by gcr.io/$PROJECT_ID/$IMAGE:$TAG
-      # whenever we build and deploy again
+      # in deployment.yaml.
+      # Kustomize is trying to find ‘gcr.io/PROJECT_ID/IMAGE:TAG’ in its ‘resources’
+      # (defined in customization.xml, which includes deployment.xml
+      # and service xml in this case). it will be
+      # replaced by kustomize with the latest <name>:<tag> value represented
+      # by gcr.io/$PROJECT_ID/$IMAGE:$TAG
+      # This keeps <name>:<tag> value of the image up-to-date whenever we build
+      # and deploy again.
       - name: Customize and Deploy Image to GKE cluster
         run: |-
-          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:Tag="gcr.io/$PROJECT_ID/$IMAGE:$TAG"
+          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG="gcr.io/$PROJECT_ID/$IMAGE:$TAG"
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
