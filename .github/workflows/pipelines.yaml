@@ -82,7 +82,7 @@ jobs:
       # in deployment.yaml.
       # Kustomize is trying to find ‘gcr.io/PROJECT_ID/IMAGE:TAG’ in its ‘resources’
       # (defined in customization.xml, which includes deployment.xml
-      # and service xml in this case); it will be
+      # and service xml in this case). it will be
       # replaced by kustomize with the latest <name>:<tag> value represented
       # by gcr.io/$PROJECT_ID/$IMAGE:$TAG
       # This keeps <name>:<tag> value of the image up-to-date whenever we build
